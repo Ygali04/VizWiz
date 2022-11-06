@@ -1,21 +1,14 @@
 import gdown
 from keras.utils.np_utils import to_categorical
 
-
-# file variables
 train_feats_url         = 'https://drive.google.com/uc?id=1u485ehCP-ccAt3sSPwjCE0qCK-dOVsl5'
 train_feats_path        = 'train_features.hdf5'
 
 gdown.download(train_feats_url, 'train_features.hdf5', False)
-
-# file variables
-
-# file variables
 val_feats_url         = 'https://drive.google.com/uc?id=1cdXPB49VuLr4ZbH-bwza9orlDddwDYOr'
 val_feats_path        = 'val_features.hdf5'
 
 gdown.download(val_feats_url, 'val_features.hdf5', False)
-
 
 
 from keras.models import Sequential
