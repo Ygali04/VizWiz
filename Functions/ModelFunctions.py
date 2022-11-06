@@ -65,3 +65,22 @@ def vqa_model(embedding, vocab_size, q_lengths = 20,
                                    num_layers = num_lstm_layers, 
                                    hidden_size=hidden_size, 
                                    embedding_size=embedding_size)
+  combined = multiply([image_model_.output, language_model_.output])
+
+  model = Dense(256, activation = 'tanh')(combined)
+  model = Dropout(0.5)(model)
+
+  model = Dense(256, activation = 'tanh')(model)
+  model = Dropout(0.5)(model)
+
+  model = Dense(128, activation = 'tanh')(model)
+  model = Dropout(0.5)(model)
+
+  model = Dense(num_classes)(model)
+  model = Activation("softmax")(model)
+
+  model = Model(inputs=[image_model_.input, language_model_.input], outputs=model)
+
+  model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
+
+  return model
